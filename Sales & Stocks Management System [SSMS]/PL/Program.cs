@@ -1,3 +1,6 @@
+using DAL.DbContexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace PL
 {
     public class Program
@@ -8,6 +11,7 @@ namespace PL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
 
             var app = builder.Build();
 
