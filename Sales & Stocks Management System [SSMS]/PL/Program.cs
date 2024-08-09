@@ -1,5 +1,12 @@
+using BLL.Interfaces.Invoice;
+using BLL.Repositories.Invoice;
+using BLL.Interfaces;
 using DAL.DbContexts;
+using DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using BLL.Repositories;
+using BLL.Interfaces.Contact;
+using BLL.Repositories.Contact;
 
 namespace PL
 {
@@ -11,7 +18,13 @@ namespace PL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<Stock_SalseDbContext>();
+            builder.Services.AddScoped<ISalesInvoice, SalesInvoiceRepository>();
+            builder.Services.AddScoped<IPurchaseInvoice, PurchaseInvoiceRepository>();
+            builder.Services.AddScoped<IProduct, ProductRepository>();
+            builder.Services.AddScoped<ICustomer, CustomerRepository>();
+            builder.Services.AddScoped<ISupplier, SupplierRepository>();
+            
 
             var app = builder.Build();
 
