@@ -10,6 +10,7 @@ namespace DAL.Models
     {
         public int Id { get; set; }
         public double Price { get; set; }
+        public DateTime DateTime { get; set; }
         public Product Product { get; set; }
     }
 }

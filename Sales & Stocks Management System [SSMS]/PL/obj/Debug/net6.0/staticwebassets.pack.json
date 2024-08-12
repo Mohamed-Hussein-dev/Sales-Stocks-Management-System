@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\PL.bundle.scp.css"
     },
     {
+      "Id": "F:\\Sales-Stocks-Management-System\\Sales & Stocks Management System [SSMS]\\PL\\wwwroot\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\css\\all.min.css"
+    },
+    {
+      "Id": "F:\\Sales-Stocks-Management-System\\Sales & Stocks Management System [SSMS]\\PL\\wwwroot\\css\\sideparstylesheet.css",
+      "PackagePath": "staticwebassets\\css\\sideparstylesheet.css"
+    },
+    {
       "Id": "F:\\Sales-Stocks-Management-System\\Sales & Stocks Management System [SSMS]\\PL\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

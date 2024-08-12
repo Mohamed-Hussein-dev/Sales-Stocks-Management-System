@@ -44,7 +44,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Contact", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Contact");
                 });
@@ -84,7 +84,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.ToTable("Invoice");
+                    b.ToTable("Invoice", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Invoice");
                 });
@@ -115,7 +115,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("InvoiceItems");
+                    b.ToTable("InvoiceItems", (string)null);
                 });
 
             modelBuilder.Entity("DAL.Models.Product", b =>
@@ -128,21 +128,24 @@ namespace DAL.Migrations
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.HasIndex("Name", "Category")
+                        .IsUnique();
+
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("DAL.Models.ProductPrice", b =>
@@ -152,6 +155,9 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -163,7 +169,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductPrices");
+                    b.ToTable("ProductPrices", (string)null);
                 });
 
             modelBuilder.Entity("DAL.Models.Customer", b =>

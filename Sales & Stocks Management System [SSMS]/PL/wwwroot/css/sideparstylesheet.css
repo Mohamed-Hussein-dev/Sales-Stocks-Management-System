@@ -1,0 +1,23 @@
+﻿.sidebar {
+    padding: 15px;
+    background-color: #d3d3d3;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+.nav-item {
+    margin-bottom: 20px;
+}
+
+.nav-link:hover {
+    font-weight: bold;
+}

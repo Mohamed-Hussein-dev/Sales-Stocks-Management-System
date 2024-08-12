@@ -1,0 +1,55 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Edit Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="display-4 mb-4">Edit Product</h3>
+
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label fw-bold"></label>
+            <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Category" class="form-label fw-bold"></label>
+            <input asp-for="Category" class="form-control" placeholder="Enter product category" />
+            <span asp-validation-for="Category" class="text-danger small"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label fw-bold"></label>
+            <textarea asp-for="Description" class="form-control" placeholder="Enter product description" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger small"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="StockQuantity" class="form-label fw-bold"></label>
+            <input asp-for="StockQuantity" class="form-control" type="number" placeholder="Enter stock quantity" />
+            <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="LastPrice" class="form-label fw-bold"></label>
+            <input asp-for="LastPrice" class="form-control" type="number" placeholder="Enter New Last Price" />
+            <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

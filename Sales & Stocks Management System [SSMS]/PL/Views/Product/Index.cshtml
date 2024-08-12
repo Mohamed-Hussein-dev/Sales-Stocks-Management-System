@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var nameFilter = ViewContext.HttpContext.Request.Query["name"].ToString();
+    var categoryFilter = ViewContext.HttpContext.Request.Query["category"].ToString();
+    var minStockFilter = ViewContext.HttpContext.Request.Query["minStock"].ToString();
+    var maxStockFilter = ViewContext.HttpContext.Request.Query["maxStock"].ToString();
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="display-4">Products</h3>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="fa fa-plus-circle"></i> Add New Product
+        </a>
+    </div>
+
+    <form asp-action="Index">
+        <div class="input-group mb-4">
+            <input name="name" value="@nameFilter" placeholder="Product's Name" class="form-control" />
+            <input name="category" value="@categoryFilter" placeholder="Category" class="form-control" />
+            <input name="minStock" value="@minStockFilter" placeholder="Min Stock" type="number" class="form-control" />
+            <input name="maxStock" value="@maxStockFilter" placeholder="Max Stock" type="number" class="form-control" />
+            <button type="submit" class="btn btn-outline-dark">
+                <i class="fa fa-search"></i> Search
+            </button>
+        </div>
+    </form>
+
+    <table class="table table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.Name)</td>
+                <td>@Html.DisplayNameFor(m => m.Category)</td>
+                <td>@Html.DisplayNameFor(m => m.StockQuantity)</td>
+                <td>Last Price</td>
+                <td>Details</td>
+                <td>Update</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr class="@(product.StockQuantity <= 2 ? "table-danger" : "") shadow-sm mb-1">
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                    <td>@product.StockQuantity</td>
+                    <td>@product.ProductPrices.LastOrDefault()?.Price</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-outline-primary btn-sm">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-outline-warning btn-sm">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-outline-danger btn-sm">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

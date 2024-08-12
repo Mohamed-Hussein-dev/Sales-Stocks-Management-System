@@ -1,0 +1,71 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="display-4">Product Details</h3>
+
+<div class="card">
+    <div class="card-header">
+        @Model.Name
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Category: @Model.Category</h5>
+        <p class="card-text">Description: @Model.Description</p>
+        <p class="card-text">Stock Quantity: @Model.StockQuantity</p>
+        <p class="card-text">Last Price: @Model.ProductPrices.LastOrDefault()?.Price</p>
+
+        <!-- Chart Container -->
+        <div class="my-4">
+            <canvas id="priceChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Action Buttons -->
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('priceChart').getContext('2d');
+
+        var priceChart = new Chart(ctx, {
+            type: 'line', // or 'bar', 'pie', etc.
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.ProductPrices.Select(p => p.DateTime.ToString("yyyy-MM-dd")))),
+                datasets: [{
+                    label: 'Product Prices',
+                    data: @Html.Raw(Json.Serialize(Model.ProductPrices.Select(p => p.Price))),
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Price'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

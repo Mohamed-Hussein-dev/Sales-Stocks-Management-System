@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Repositories
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWrok , IDisposable
     {
         private readonly Stock_SalseDbContext _dbContext;
         private readonly IServiceProvider _serviceProvider;
@@ -34,6 +34,13 @@ namespace BLL.Repositories
         public ICustomer CustomerRepository => _customerRepo ??= _serviceProvider.GetRequiredService<ICustomer>();
         public ISupplier SupplierRepository => _supplierRepo ??= _serviceProvider.GetRequiredService<ISupplier>();
 
-
+        public int Save()
+        {
+            return _dbContext.SaveChanges();
+        }
+        public void Dispose()
+        {
+            _dbContext.Dispose();
+        }
     }
 }

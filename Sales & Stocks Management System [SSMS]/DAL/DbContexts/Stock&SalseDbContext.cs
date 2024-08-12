@@ -26,6 +26,11 @@ namespace DAL.DbContexts
             modelBuilder.Entity<Invoice>()
                 .Property(i => i.Status)
                 .HasConversion<string>();
+
+            modelBuilder.Entity<Product>()
+            .HasIndex(p => new { p.Name, p.Category })
+            .IsUnique();
+
             base.OnModelCreating(modelBuilder);
         }
     }

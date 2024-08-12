@@ -1,4 +1,4 @@
-using BLL.Interfaces.Invoice;
+﻿using BLL.Interfaces.Invoice;
 using BLL.Repositories.Invoice;
 using BLL.Interfaces;
 using DAL.DbContexts;
@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using BLL.Repositories;
 using BLL.Interfaces.Contact;
 using BLL.Repositories.Contact;
+using PL.MappingProfiles;
+using PL.Healpers;
 
 namespace PL
 {
@@ -24,8 +26,11 @@ namespace PL
             builder.Services.AddScoped<IProduct, ProductRepository>();
             builder.Services.AddScoped<ICustomer, CustomerRepository>();
             builder.Services.AddScoped<ISupplier, SupplierRepository>();
-            
+            builder.Services.AddScoped<UnitOfWork>();
 
+            builder.Services.AddAutoMapper(M => M.AddProfile(new ProductProfile()));
+
+            //ExcelToDb.ProcessExcelFile("C:\\Users\\Mohamed\\Downloads\\Telegram Desktop\\الاصناف.xlsx");
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

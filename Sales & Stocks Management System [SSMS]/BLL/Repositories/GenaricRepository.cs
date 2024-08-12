@@ -29,9 +29,9 @@ namespace BLL.Repositories
         }
 
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-           return _dbContext.Set<T>().ToList();
+           return _dbContext.Set<T>();
         }
 
         public virtual T? GetById(int id)

@@ -8,7 +8,7 @@ namespace BLL.Interfaces
 {
     public interface IGenaricRepository<T>
     {
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
         T? GetById(int id);
         void Delete(T Entity);
         void Update(T Entity);

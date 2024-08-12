@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,6 @@ namespace BLL.Interfaces
 {
     public interface IProduct : IGenaricRepository<Product>
     {
-        IQueryable<Product> GetByName(string name);
-        IQueryable<Product> GetByStock(int mn , int mx = int.MaxValue);
-        IQueryable<Product> GetByCategory(string Category);
-
+       public DbSet<Product> Entity { get; }
     }
 }

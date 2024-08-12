@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using DAL.DbContexts;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +13,23 @@ namespace BLL.Repositories
     public class ProductRepository : GenaricRepository<Product> , IProduct
     {
         private readonly Stock_SalseDbContext dbContext;
+ 
+        public DbSet<Product> Entity => dbContext.Products;
+        
 
         public ProductRepository(Stock_SalseDbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public IQueryable<Product> GetByCategory(string Category)
+        public override Product? GetById(int id)
         {
-            return dbContext.Products.Where(product => product.Category.Contains(Category));
+            return dbContext.Products.Include(p => p.ProductPrices).FirstOrDefault(p => p.Id == id);
         }
 
-        public IQueryable<Product> GetByName(string name)
+        public override IQueryable<Product> GetAll()
         {
-            return dbContext.Products.Where(product => product.Name.Contains(name));
-        }
-
-        public IQueryable<Product> GetByStock(int mn, int mx = int.MaxValue)
-        {
-            return dbContext.Products.Where(product => product.StockQuantity >= mn && product.StockQuantity <= mx);
+            return dbContext.Products.Include(product => product.ProductPrices);
         }
     }
 }

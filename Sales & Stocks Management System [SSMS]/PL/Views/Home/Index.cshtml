@@ -1,8 +1,157 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <h3 class="display-4 mb-4">Dashboard</h3>
+
+    <div class="row mb-4 ">
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-secondary text-white">Total Sales Value</div>
+                <div class="card-body text-center">
+                    @* <h5 class="card-title">@Model.TotalSalesValue.ToString("C")</h5> *@
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-dark text-white">Total Purchases Value</div>
+                <div class="card-body text-center">
+                    @* <h5 class="card-title">@Model.TotalPurchasesValue.ToString("C")</h5> *@
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-warning text-dark">Total Sales Pending</div>
+                <div class="card-body text-center">
+                    @* <h5 class="card-title">@Model.TotalSalesPending.ToString("C")</h5> *@
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-dark text-white">Total Purchases Pending</div>
+                <div class="card-body text-center">
+                    @* <h5 class="card-title">@Model.TotalPurchasesPending.ToString("C")</h5> *@
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-secondary text-white">Monthly Sales</div>
+                <div class="card-body text-center">
+                    @* <h5 class="card-title">@Model.MonthlySales.ToString("C")</h5> *@
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- #Low Stock Product -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Low Stock Products (@Model.LowStockProducts.Count())</h5>
+            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#lowStockCollapse" aria-expanded="true" aria-controls="lowStockCollapse">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+        </div>
+        <div id="lowStockCollapse" class="collapse">
+            <div class="card-body">
+                @if (Model.LowStockProducts.Any())
+                {
+                    <ul class="list-group">
+                        @foreach (var product in Model.LowStockProducts)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @product.Name
+                                <span class="badge bg-danger rounded-pill">@product.StockQuantity in stock</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No low stock products</p>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-primary text-white">Top-Selling Products</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @* @foreach (var product in Model.TopSellingProducts)
+                        {
+                            <li class="list-group-item">
+                                @product.Name
+                            </li>
+                        } *@
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card bg-light shadow-sm">
+                <div class="card-header bg-success text-white">Recent Transactions</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                       @*  @foreach (var transaction in Model.RecentTransactions)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @transaction.Description
+                                <span class="badge bg-secondary rounded-pill">@transaction.Amount.ToString("C")</span>
+                            </li>
+                        } *@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-info text-white">Monthly Sales vs Purchases</div>
+        <div class="card-body">
+            <canvas id="salesPurchasesChart"></canvas>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('salesPurchasesChart').getContext('2d');
+        var salesPurchasesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Sales', 'Purchases'],
+                datasets: [{
+                    label: 'Amount',
+                    @*data: [@Model.MonthlySales, @Model.MonthlyPurchases],*@
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}
