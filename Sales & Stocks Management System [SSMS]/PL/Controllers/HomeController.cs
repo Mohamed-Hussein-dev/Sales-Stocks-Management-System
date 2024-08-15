@@ -21,7 +21,7 @@ namespace PL.Controllers
 
         public IActionResult Index()
         {
-            var OutOfStockProducts = _unitOfWork.ProductRepository.Entity.Where(P => P.StockQuantity <= 2).ToList();
+            var OutOfStockProducts = _unitOfWork.ProductRepository.Entities.Where(P => P.StockQuantity <= 2).ToList();
             var mapped = _mapper.Map<IEnumerable<ProductViewModel>>(OutOfStockProducts);
             DashboardViewModel model = new DashboardViewModel()
             {

@@ -34,12 +34,15 @@
             <input asp-for="StockQuantity" class="form-control" type="number" placeholder="Enter stock quantity" />
             <span asp-validation-for="StockQuantity" class="text-danger small"></span>
         </div>
+        @if (Model.ProductPrices.LastOrDefault()?.Price is not null)
+        {
 
-        <div class="form-group mb-3">
-            <label asp-for="LastPrice" class="form-label fw-bold"></label>
-            <input asp-for="LastPrice" class="form-control" type="number" placeholder="Enter New Last Price" />
-            <span asp-validation-for="StockQuantity" class="text-danger small"></span>
-        </div>
+            <div class="form-group mb-3">
+                <label asp-for="LastPrice" class="form-label fw-bold"></label>
+                <input asp-for="LastPrice" class="form-control" type="number" placeholder="Enter New Last Price" />
+                <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+            </div>
+        }
 
         <div class="d-flex justify-content-between mt-4">
             <button type="submit" class="btn btn-primary">Save</button>

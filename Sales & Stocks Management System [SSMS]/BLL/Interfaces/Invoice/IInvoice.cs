@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces.Invoice
 {
-    public interface IInvoice<T> where T : class
+    public interface IInvoice<T> : IGenaricRepository<T> where T : class
     {
         double GetTotal(T Invoice);
     }

@@ -18,6 +18,8 @@ namespace BLL.Repositories.Contact
             _dbContext = dbContext;
         }
 
+        public IEnumerable<Supplier> Entity => _dbContext.Suppliers;
+
         public IEnumerable<Supplier> GetByName(string name)
         {
             return _dbContext.Suppliers.Where(x => x.Name.Contains(name)).ToList();

@@ -18,6 +18,9 @@ namespace BLL.Repositories
         {
             _dbContext = dbContext;
         }
+
+        public IQueryable<T> Entities => _dbContext.Set<T>();
+
         public void Add(T Entity)
         {
             _dbContext.Add(Entity);

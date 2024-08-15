@@ -115,30 +115,24 @@ namespace PL.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var product = _unitOfWork.ProductRepository.GetById(id);
-                    if (product == null)
-                    {
-                        return NotFound();
-                    }
-
+                    Product ?product = _unitOfWork.ProductRepository.GetById(id);
+                    if (product == null) return NotFound();
                     product.Name = productViewModel.Name;
                     product.Description = productViewModel.Description;
-                    product.StockQuantity = productViewModel.StockQuantity;
                     product.Category = productViewModel.Category;
-                    var lastPrice = product.ProductPrices.LastOrDefault();
-                    if (lastPrice != null)
+                    product.StockQuantity = productViewModel.StockQuantity;
+
+                    if (product.ProductPrices.Any())
                     {
+                        var lastPrice = product.ProductPrices.Last();
                         lastPrice.Price = productViewModel.LastPrice;
                     }
                     else
                     {
-                        product.ProductPrices.Add(new ProductPrice()
-                        {
-                            Price = productViewModel.LastPrice,
-                            Product = product,
-                            DateTime = DateTime.Now
-                        });
+                        // Optionally handle cases where there are no price entries
+                        product.ProductPrices.Add(new ProductPrice { Price = productViewModel.LastPrice, DateTime = DateTime.Now });
                     }
+
                     _unitOfWork.ProductRepository.Update(product);
                     _unitOfWork.Save();
                     return RedirectToAction(nameof(Index));

@@ -7,7 +7,8 @@ namespace PL.MappingProfiles
     public class ProductProfile : Profile
     {
         public ProductProfile() { 
-            CreateMap<ProductViewModel , Product>().ReverseMap();
+            CreateMap<Product , ProductViewModel>();
+            CreateMap<ProductViewModel, Product>().ForMember(dist => dist.InvoiceItems , opt => opt.Ignore());
         }
     }
 }

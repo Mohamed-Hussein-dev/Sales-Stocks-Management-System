@@ -12,24 +12,16 @@ namespace BLL.Repositories
 {
     public class ProductRepository : GenaricRepository<Product> , IProduct
     {
-        private readonly Stock_SalseDbContext dbContext;
- 
-        public DbSet<Product> Entity => dbContext.Products;
-        
-
-        public ProductRepository(Stock_SalseDbContext dbContext) : base(dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        public ProductRepository(Stock_SalseDbContext dbContext) : base(dbContext){ }
 
         public override Product? GetById(int id)
         {
-            return dbContext.Products.Include(p => p.ProductPrices).FirstOrDefault(p => p.Id == id);
+            return Entities.Include(p => p.ProductPrices).FirstOrDefault(p => p.Id == id);
         }
 
         public override IQueryable<Product> GetAll()
         {
-            return dbContext.Products.Include(product => product.ProductPrices);
+            return Entities.Include(product => product.ProductPrices);
         }
     }
 }

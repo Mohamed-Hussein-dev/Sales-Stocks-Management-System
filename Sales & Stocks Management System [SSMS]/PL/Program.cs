@@ -9,6 +9,7 @@ using BLL.Interfaces.Contact;
 using BLL.Repositories.Contact;
 using PL.MappingProfiles;
 using PL.Healpers;
+using Microsoft.Data.SqlClient;
 
 namespace PL
 {
@@ -29,6 +30,7 @@ namespace PL
             builder.Services.AddScoped<UnitOfWork>();
 
             builder.Services.AddAutoMapper(M => M.AddProfile(new ProductProfile()));
+            builder.Services.AddAutoMapper(M => M.AddProfile(new CustomerProfile()));
 
             //ExcelToDb.ProcessExcelFile("C:\\Users\\Mohamed\\Downloads\\Telegram Desktop\\الاصناف.xlsx");
             var app = builder.Build();

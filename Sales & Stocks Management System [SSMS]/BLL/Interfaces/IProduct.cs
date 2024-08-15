@@ -10,6 +10,6 @@ namespace BLL.Interfaces
 {
     public interface IProduct : IGenaricRepository<Product>
     {
-       public DbSet<Product> Entity { get; }
+       
     }
 }

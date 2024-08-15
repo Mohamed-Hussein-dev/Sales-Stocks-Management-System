@@ -1,5 +1,6 @@
 ﻿using DAL.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 
 namespace PL.Models
 {
@@ -19,7 +20,7 @@ namespace PL.Models
         [Required(ErrorMessage = "StockQuantity Is Requrid")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int StockQuantity { get; set; }
-        public double LastPrice { get; set; }
+        public double LastPrice { get;set; }
         public ICollection<InvoiceItem> InvoiceItems { get; set; } = new List<InvoiceItem>();
         public ICollection<ProductPrice> ProductPrices { get; set; } = new List<ProductPrice>();
     }

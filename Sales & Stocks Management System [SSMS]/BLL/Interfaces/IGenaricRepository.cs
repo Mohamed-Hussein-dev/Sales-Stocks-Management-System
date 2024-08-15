@@ -13,6 +13,7 @@ namespace BLL.Interfaces
         void Delete(T Entity);
         void Update(T Entity);
         void Add(T Entity);
+        IQueryable<T> Entities {  get; }
 
     }
 }
