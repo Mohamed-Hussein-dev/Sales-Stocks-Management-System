@@ -16,9 +16,8 @@ namespace DAL.Models
         public InvoiceStatus Status { get; set; } //Pending , Paid
         public double Discount { get; set; }
         public double AmountPaid { get; set; }
-
-        public double Balnced => TotalAmount - AmountPaid;
         public double TotalAmount { get; set; }
+        public int ContactId { get; set; }
         public Contact Contact { get; set; }
         public ICollection<InvoiceItem> InvoiceItems { get; set; } = new List<InvoiceItem>();
     }

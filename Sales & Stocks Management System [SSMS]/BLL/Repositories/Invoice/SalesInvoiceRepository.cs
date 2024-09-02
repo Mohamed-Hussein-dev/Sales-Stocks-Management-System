@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces.Invoice;
 using DAL.DbContexts;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace BLL.Repositories.Invoice
     {
         public SalesInvoiceRepository(Stock_SalseDbContext dbContext) : base(dbContext){}
 
+        public override IQueryable<SaleInvoice> GetAll()
+        {
+            return Entities.Include(invoice => invoice.InvoiceItems).Include(invoice => invoice.Contact);
+        }
         public double GetTotal(SaleInvoice Invoice)
         {
             double total = Invoice.InvoiceItems.Sum(x => x.Quantity * x.UnitPrice);

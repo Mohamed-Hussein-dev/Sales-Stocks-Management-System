@@ -1,0 +1,67 @@
+﻿@model IEnumerable<InvoiceViewModel>
+@{
+    ViewData["Title"] = "Sales Invoices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var egyptianCulture = new CultureInfo("ar-EG");
+}
+
+
+
+<div class="container mt-4">
+    <h3 class="display-4 d-flex justify-content-start">Invoices</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Invoice ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Contact Name</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Amount Paid</th>
+                <th scope="col">Balance</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var invoice in Model)
+                {
+                    <tr>
+                        <td>@invoice.Id</td>
+                        <td>@invoice.Date.ToShortDateString()</td>
+                        <td>@invoice.Contact?.Name</td>
+                        <td>@invoice.TotalAmount.ToString("C", egyptianCulture)</td>
+                        <td>@invoice.AmountPaid.ToString("C", egyptianCulture)</td>
+                        <td>@invoice.Balnced.ToString("C", egyptianCulture)</td>
+                        <td>
+                            @if (invoice.Status == DAL.Models.InvoiceStatus.Paid)
+                            {
+                                <span class="badge bg-success">Paid</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning">Pending</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Details", "Invoice", new { id = invoice.Id })" class="btn btn-info btn-sm">Details</a>
+                            <a href="@Url.Action("Edit", "Invoice", new { id = invoice.Id })" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="@Url.Action("Delete", "Invoice", new { id = invoice.Id })" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="text-center">No invoices found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Create" class="btn btn-success">Create New Invoice</a>
+</div>
+

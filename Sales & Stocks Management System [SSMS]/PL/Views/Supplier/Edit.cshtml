@@ -1,0 +1,38 @@
+﻿@model SupplierViewModel
+
+@{
+    ViewData["Title"] = "Edit Supplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var egyptianCulture = new CultureInfo("ar-EG");
+}
+
+<div class="container mt-4">
+    <h3 class="display-4">Edit Supplier</h3>
+
+    <form asp-action="Edit" method="post">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="form-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+

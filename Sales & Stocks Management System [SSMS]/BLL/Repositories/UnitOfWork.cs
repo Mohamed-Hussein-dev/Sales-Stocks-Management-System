@@ -22,6 +22,7 @@ namespace BLL.Repositories
         private IProduct _productRepo;
         private ICustomer _customerRepo;
         private ISupplier _supplierRepo;
+        private IInvioceItem _invioceItemRepo;
         public UnitOfWork(Stock_SalseDbContext dbContext , IServiceProvider serviceProvider)
         {
             _dbContext = dbContext;
@@ -33,6 +34,7 @@ namespace BLL.Repositories
         public IProduct ProductRepository => _productRepo ??= _serviceProvider.GetRequiredService<IProduct>();
         public ICustomer CustomerRepository => _customerRepo ??= _serviceProvider.GetRequiredService<ICustomer>();
         public ISupplier SupplierRepository => _supplierRepo ??= _serviceProvider.GetRequiredService<ISupplier>();
+        public IInvioceItem InvioceItemRepository => _invioceItemRepo ??= _serviceProvider.GetRequiredService<IInvioceItem>();
 
         public int Save()
         {

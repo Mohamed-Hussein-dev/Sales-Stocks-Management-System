@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\views\\customer\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\views\\customer\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\controllers\\salescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\models\\supplierviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\models\\supplierviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\models\\invoiceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\models\\invoiceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\models\\customerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\models\\customerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\views\\sales\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\views\\sales\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|f:\\sales-stocks-management-system\\sales \u0026 stocks management system [ssms]\\pl\\views\\sales\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B8EE7532-A351-4DD1-95AD-48CCD9557377}|PL\\PL.csproj|solutionrelative:pl\\views\\sales\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +34,79 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Product\\Delete.cshtml",
-              "RelativeDocumentMoniker": "PL\\Views\\Product\\Delete.cshtml",
-              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Product\\Delete.cshtml",
-              "RelativeToolTip": "PL\\Views\\Product\\Delete.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "InvoiceViewModel.cs",
+              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Models\\InvoiceViewModel.cs",
+              "RelativeDocumentMoniker": "PL\\Models\\InvoiceViewModel.cs",
+              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Models\\InvoiceViewModel.cs",
+              "RelativeToolTip": "PL\\Models\\InvoiceViewModel.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T22:12:28.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Sales\\Index.cshtml",
+              "RelativeDocumentMoniker": "PL\\Views\\Sales\\Index.cshtml",
+              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Sales\\Index.cshtml",
+              "RelativeToolTip": "PL\\Views\\Sales\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-15T23:04:10.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-26T21:33:28.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SupplierViewModel.cs",
+              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Models\\SupplierViewModel.cs",
+              "RelativeDocumentMoniker": "PL\\Models\\SupplierViewModel.cs",
+              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Models\\SupplierViewModel.cs",
+              "RelativeToolTip": "PL\\Models\\SupplierViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T21:44:07.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomerViewModel.cs",
+              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Models\\CustomerViewModel.cs",
+              "RelativeDocumentMoniker": "PL\\Models\\CustomerViewModel.cs",
+              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Models\\CustomerViewModel.cs",
+              "RelativeToolTip": "PL\\Models\\CustomerViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T21:44:02.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Sales\\Create.cshtml",
+              "RelativeDocumentMoniker": "PL\\Views\\Sales\\Create.cshtml",
+              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Sales\\Create.cshtml",
+              "RelativeToolTip": "PL\\Views\\Sales\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-26T21:33:28.652Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Customer\\Delete.cshtml",
-              "RelativeDocumentMoniker": "PL\\Views\\Customer\\Delete.cshtml",
-              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Views\\Customer\\Delete.cshtml*",
-              "RelativeToolTip": "PL\\Views\\Customer\\Delete.cshtml*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-15T23:02:25.255Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "PL\\Controllers\\CustomerController.cs",
-              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "PL\\Controllers\\CustomerController.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAuwE8AAAAhAAAA",
+              "Title": "SalesController.cs",
+              "DocumentMoniker": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Controllers\\SalesController.cs",
+              "RelativeDocumentMoniker": "PL\\Controllers\\SalesController.cs",
+              "ToolTip": "F:\\Sales-Stocks-Management-System\\Sales \u0026 Stocks Management System [SSMS]\\PL\\Controllers\\SalesController.cs",
+              "RelativeToolTip": "PL\\Controllers\\SalesController.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAUwE4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-15T22:58:58.296Z",
+              "WhenOpened": "2024-08-26T21:30:40.781Z",
               "EditorCaption": ""
             }
           ]

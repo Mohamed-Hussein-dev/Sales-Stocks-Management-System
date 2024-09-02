@@ -70,7 +70,7 @@ namespace PL.Controllers
 
         public IActionResult Details(int id , string ViewName = "Details")
         {
-            var customer = _unitOfWork.CustomerRepository.Entities.Include(C => C.Invoices).Where(C => C.Id == id).FirstOrDefault();
+            var customer = _unitOfWork.CustomerRepository.Entities.Include(C => C.Invoices).ThenInclude(inv => inv.InvoiceItems).Where(C => C.Id == id).FirstOrDefault();
             if(customer == null)
                    return NotFound();
             var mappedCustomer = _mapper.Map<CustomerViewModel>(customer);

@@ -1,0 +1,55 @@
+﻿
+@model IEnumerable<SupplierViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var egyptianCulture = new CultureInfo("ar-EG");
+}
+
+<div class="container mt-4">
+    <h3 class="display-4">Suppliers</h3>
+    <div class="d-flex justify-content-between mb-3">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="fa fa-plus-circle"></i> Add New Supplier
+        </a>
+    </div>
+
+    <table class="table table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Total Pending Invoices</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+         
+            @foreach (var Supplier in Model)
+            {
+                
+                <tr>
+                    <td>@Supplier.Name</td>
+                    <td>@Supplier.PhoneNumber</td>
+                    <td>@Supplier.TotalPendingInvoices.ToString("C", egyptianCulture)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@Supplier.Id" class="btn btn-warning btn-sm">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+
+                        <a asp-action="Details" asp-route-id="@Supplier.Id" class="btn btn-primary btn-sm">
+                            <i class="fa fa-eye"></i> View Details
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@Supplier.Id" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

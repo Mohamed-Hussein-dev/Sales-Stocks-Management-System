@@ -14,7 +14,7 @@ namespace PL.Models
         [Required(ErrorMessage = "Phone number is required.")]
         [Phone(ErrorMessage = "Invalid phone number format.")]
         public string PhoneNumber { get; set; }
-        public double TotalPendingInvoices => Invoices.Sum(In => In.Balnced);
-        public ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+        public double TotalPendingInvoices => Invoices.Sum(In => In.TotalAmount  - In.AmountPaid);
+        public ICollection<InvoiceViewModel> Invoices { get; set; } = new List<InvoiceViewModel>();
     }
 }

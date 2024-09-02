@@ -1,0 +1,207 @@
+﻿@model InvoiceViewModel
+
+@{
+    ViewData["Title"] = "Create Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Create Invoice</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div asp-validation-summary="All" class="alert alert-danger">
+        <p class="fw-bold">Please fix the following errors:</p>
+    </div>
+}
+
+<form asp-action="Create" method="post" class="bg-light p-4 rounded shadow-sm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label asp-for="Date" class="form-label fw-semibold">Invoice Date</label>
+            <input asp-for="Date" class="form-control" type="date" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ContactId" class="form-label fw-semibold">Contact</label>
+            <input asp-for="ContactId" class="form-control" placeholder="Enter contact name or ID" />
+            <span asp-validation-for="ContactId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <h4 class="my-4">Invoice Items</h4>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="invoice-items">
+            @for (int i = 0; i < Model.InvoiceItems.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input name="InvoiceItems[@i].ProductId" type="hidden" value="@Model.InvoiceItems[i].ProductId" />
+                        <input name="InvoiceItems[@i].ProductName" class="form-control product-input" placeholder="Search product" data-index="@i" value="@Model.InvoiceItems[i].Product?.Name" />
+                        <div class="product-dropdown-container" data-index="@i"></div>
+                        <span asp-validation-for="InvoiceItems[@i].ProductId" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input name="InvoiceItems[@i].Quantity" value="@Model.InvoiceItems[i].Quantity" class="form-control quantity-input" placeholder="Qty" />
+                        <span asp-validation-for="InvoiceItems[@i].Quantity" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input name="InvoiceItems[@i].UnitPrice" value="@Model.InvoiceItems[i].UnitPrice" class="form-control unit-price-input" placeholder="Price" />
+                        <span asp-validation-for="InvoiceItems[@i].UnitPrice" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <span class="item-total">0.00</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-danger remove-item-btn">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="mb-3">
+        <button type="button" class="btn btn-outline-primary" id="add-item-btn">Add Item</button>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label asp-for="Discount" class="form-label fw-semibold">Discount</label>
+            <input name="Discount" value="@Model.Discount" class="form-control discount-input" placeholder="Enter discount" />
+            <span asp-validation-for="Discount" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="AmountPaid" class="form-label fw-semibold">Amount Paid</label>
+            <input name="AmountPaid" value="@Model.AmountPaid" class="form-control" placeholder="Enter amount paid" />
+            <span asp-validation-for="AmountPaid" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <h5 class="mt-4">Total Amount: <span id="overall-total">0.00</span></h5>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Invoice</button>|
+    <button asp-action="Index" class="btn btn-secondary">Cancel</button>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let itemIndex = @Model.InvoiceItems.Count;
+
+            function calculateTotals() {
+                let overallTotal = 0;
+                $('#invoice-items tr').each(function () {
+                    const quantity = parseFloat($(this).find('.quantity-input').val()) || 0;
+                    const unitPrice = parseFloat($(this).find('.unit-price-input').val()) || 0;
+                    const itemTotal = quantity * unitPrice;
+                    $(this).find('.item-total').text(itemTotal.toFixed(2));
+                    overallTotal += itemTotal;
+                });
+
+                // Apply discount
+                const discount = parseFloat($('.discount-input').val()) || 0;
+                if (discount > 0) {
+                    overallTotal -= discount;
+                }
+
+                $('#overall-total').text(overallTotal.toFixed(2));
+            }
+
+            $('#add-item-btn').click(function () {
+                const newRow = `
+                                    <tr>
+                                        <td>
+                                            <input name="InvoiceItems[${itemIndex}].ProductId" type="hidden" />
+                                            <input name="InvoiceItems[${itemIndex}].ProductName" class="form-control product-input" placeholder="Search product" data-index="${itemIndex}" />
+                                            <div class="product-dropdown-container" data-index="${itemIndex}" style="display: none;"></div>
+                                        </td>
+                                        <td>
+                                            <input name="InvoiceItems[${itemIndex}].Quantity" class="form-control quantity-input" placeholder="Qty" />
+                                        </td>
+                                        <td>
+                                            <input name="InvoiceItems[${itemIndex}].UnitPrice" class="form-control unit-price-input" placeholder="Price" />
+                                        </td>
+                                        <td>
+                                            <span class="item-total">0.00</span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-danger remove-item-btn">Remove</button>
+                                        </td>
+                                    </tr>`;
+                $('#invoice-items').append(newRow);
+                itemIndex++;
+                calculateTotals();
+            });
+
+            $(document).on('click', '.remove-item-btn', function () {
+                $(this).closest('tr').remove();
+                calculateTotals();
+            });
+
+            $(document).on('input', '.quantity-input, .unit-price-input, .discount-input', function () {
+                calculateTotals();
+            });
+
+            $(document).on('input', '.product-input', function () {
+                const input = $(this);
+                const index = input.data('index');
+                const term = input.val().toLowerCase();
+                const productDropdown = input.siblings('.product-dropdown-container');
+
+                productDropdown.empty();
+
+                $.each(@Html.Raw(Json.Serialize(ViewBag.Products)), function (i, product) {
+                    if (product.text.toLowerCase().includes(term)) {
+                        productDropdown.append(
+                            `<div class="product-option" data-id="${product.value}">${product.text}</div>`
+                        );
+                    }
+                });
+
+                productDropdown.show();
+            });
+
+            $(document).on('click', '.product-option', function () {
+                const option = $(this);
+                const id = option.data('id');
+                const name = option.text();
+                const input = option.closest('tr').find('.product-input');
+                const hiddenInput = input.siblings('input[name$=".ProductId"]');
+
+                input.val(name);
+                hiddenInput.val(id);
+                option.closest('.product-dropdown-container').hide();
+            });
+
+            // Hide dropdown if click outside
+            $(document).mouseup(function (e) {
+                var container = $(".product-dropdown-container");
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    container.hide();
+                }
+            });
+
+            // Style for dropdown container
+            $(".product-dropdown-container").css({
+                'max-height': '200px',
+                'overflow-y': 'auto',
+                'border': '1px solid #ccc',
+                'background-color': '#fff',
+                'position': 'absolute',
+                'z-index': 1000
+            });
+
+            calculateTotals();
+        });
+    </script>
+}

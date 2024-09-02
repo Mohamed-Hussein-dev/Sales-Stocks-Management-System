@@ -27,10 +27,13 @@ namespace PL
             builder.Services.AddScoped<IProduct, ProductRepository>();
             builder.Services.AddScoped<ICustomer, CustomerRepository>();
             builder.Services.AddScoped<ISupplier, SupplierRepository>();
+            builder.Services.AddScoped<IInvioceItem, InvoiceItemRepository>();
             builder.Services.AddScoped<UnitOfWork>();
 
             builder.Services.AddAutoMapper(M => M.AddProfile(new ProductProfile()));
             builder.Services.AddAutoMapper(M => M.AddProfile(new CustomerProfile()));
+            builder.Services.AddAutoMapper(M => M.AddProfile(new SupplierProfile()));
+            builder.Services.AddAutoMapper(M => M.AddProfile(new InvoiceProfile()));
 
             //ExcelToDb.ProcessExcelFile("C:\\Users\\Mohamed\\Downloads\\Telegram Desktop\\الاصناف.xlsx");
             var app = builder.Build();

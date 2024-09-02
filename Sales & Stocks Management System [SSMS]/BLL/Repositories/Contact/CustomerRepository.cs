@@ -20,11 +20,11 @@ namespace BLL.Repositories.Contact
             _dbContext = dbContext;
         }
 
-        public IQueryable<Customer> Entity => _dbContext.Customers;
+        //public IQueryable<Customer> Entity => _dbContext.Customers;
 
         public override IQueryable<Customer> GetAll()
         {
-            return Entity.Include(Cus => Cus.Invoices);
+            return Entities.Include(Cus => Cus.Invoices);
         }
         public IEnumerable<Customer> GetByName(string name)
         {
